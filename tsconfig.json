@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+      "target": "ES6",                  // Compila para ECMAScript 6
+      "module": "commonjs",            // Usa CommonJS, compatível com Node.js
+      "strict": true,                  // Ativa verificações estritas de tipagem
+      "esModuleInterop": true,         // Facilita interoperabilidade com módulos CommonJS
+      "skipLibCheck": true,            // Evita checagem de tipos em arquivos de definição
+      "forceConsistentCasingInFileNames": true,
+      "outDir": "./dist",              // Diretório de saída para arquivos compilados
+      "rootDir": "./src"              // Diretório raiz dos arquivos TypeScript
+  },
+  "include": ["src/**/*"]             // Inclui todos os arquivos em src/
+}
