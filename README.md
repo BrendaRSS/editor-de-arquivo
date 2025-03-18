@@ -92,7 +92,7 @@ PUT: http://localhost:5000/users/:id
 DELETE: http://localhost:5000/users/:id
 
 
-objetc:
+JSON body:
 {
     "nome": "A string with more than 3 characters",
     "idade": "An integer greater than zero",
