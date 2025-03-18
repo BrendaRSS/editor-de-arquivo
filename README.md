@@ -90,6 +90,14 @@ GET: http://localhost:5000/users
 GET: http://localhost:5000/users/:id
 PUT: http://localhost:5000/users/:id
 DELETE: http://localhost:5000/users/:id
+
+
+objetc:
+{
+    "nome": "A string with more than 3 characters",
+    "idade": "An integer greater than zero",
+    "email": "A unique and valid email"
+}
 ```
 
 
