@@ -1,6 +1,6 @@
 # USER LISTING API
 
-This system is a user management API. The CRUD operations allow creating users, listing all users or a single user, updating, and deleting users. The API was developed using technologies such as TypeScript, Node.js, Express, Sequelize, SQLite, and Nodemon. The Joi library was used for data validation. The project follows a layered architecture, containing the following directories:
+This system is a user management API. The CRUD operations allow creating users, listing all or just a single user, updating, and deleting users. The API was developed using technologies such as TypeScript, Node.js, Express, Sequelize, SQLite, and Nodemon. The Joi library was used for data validation. The project follows a layered architecture, containing the following directories:
 
 - Configs: Contains database configuration and environment variables.
 
