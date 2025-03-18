@@ -26,9 +26,16 @@ async function getUserById(id: number) {
     return user;
 }
 
+async function validateUniqueEmailExcludingId(id: number, email: string) {
+  const userWithSameEmail = await userRepository.findByEmailExcludingId(id, email);
+  if (userWithSameEmail) {
+    throw duplicatedEmailError();
+  }
+}
+
 async function upateUser(id: number, body: UserType) {
   await getUserById(id);
-  await validateUniqueEmail(body.email);
+  await validateUniqueEmailExcludingId(id, body.email);
   const update = await userRepository.updateUser(id, body);
 
   return getUserById(id);

@@ -1,4 +1,4 @@
-import { where } from "sequelize";
+import { Op } from 'sequelize';
 import User from "../../models/User";
 import { UserType } from "../../types";
 
@@ -30,13 +30,23 @@ async function deleteUser(id: number) {
     })
 }
 
+async function findByEmailExcludingId(id: number, email: string) {
+    return await User.findOne({
+        where: {
+            email,
+            id: { [Op.ne]: id }
+        }
+    })
+}
+
 const userRepository = {
     findByEmail,
     create,
     getAllUsers,
     getUserById,
     updateUser,
-    deleteUser
+    deleteUser,
+    findByEmailExcludingId
 };
 
 export default userRepository;

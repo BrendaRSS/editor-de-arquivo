@@ -50,11 +50,11 @@ export async function updateUser( req: Request, res: Response ) {
         return res.status(httpStatus.OK).json(updateUser)
     } catch(error) {
         const err = error as Error;
-        if (err.name === 'DuplicatedEmailError') {
-            return res.status(httpStatus.CONFLICT).send((err.message ) || 'This email already exists');
-        }
         if (err.name === 'UserDoesNotExist') {
             return res.status(httpStatus.NOT_FOUND).send(err.message || 'This user does not exist');
+        }
+        if (err.name === 'DuplicatedEmailError') {
+            return res.status(httpStatus.CONFLICT).send((err.message ) || 'This email already exists');
         }
         return res.status(httpStatus.BAD_REQUEST).send(error);
     }
