@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { usersRouter } from "./routes/users-router";
-import sequelize from "./configs/database";
+import sequelize, { initDb } from "./configs/database";
 
 dotenv.config();
 
@@ -13,11 +13,20 @@ app
 .get("/health", (req: Request<any, any, any, any>, res: Response<any>) => res.send("Tudo ok!"))
 .use("/users", usersRouter)
 
-sequelize.sync()
-    .then(() => console.log('Synchronized database'))
-    .catch(err => console.error('Error synchronizing the database:', err));
+export async function init(): Promise<express.Express> {
+    await initDb();
+    return Promise.resolve(app);
+}
 
-const port = process.env.PORT || 5000
-app.listen(port, () => console.log(`Server running in port ${port}`))
+export async function close(): Promise<void> {
+    await sequelize.close();
+}
+
+const port = process.env.PORT || 5000;
+if (process.env.NODE_ENV !== 'test') {
+    init().then(() => {
+        app.listen(port, () => console.log(`Server running in port ${port}`));
+    });
+}
 
 export default app;
