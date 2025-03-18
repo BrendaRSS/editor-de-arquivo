@@ -7,7 +7,9 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
-    "test": "dotenv -e .env.test jest --runInBand"
+    "test": "dotenv -e .env.test jest --runInBand",
+    "test:unit": "dotenv -e .env.test -- jest --runInBand --testPathPattern=tests/unit",
+    "test:integration": "dotenv -e .env.test -- jest --runInBand --testPathPattern=tests/integration"
   },
   "repository": {
     "type": "git",
