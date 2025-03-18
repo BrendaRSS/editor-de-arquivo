@@ -43,7 +43,7 @@ export async function getUserById( req: Request, res: Response ) {
 
 export async function updateUser( req: Request, res: Response ) {
     const id = req.params.id;
-    const body = req.body;
+    const body = res.locals.body;
 
     try {
         const updateUser = await userService.upateUser(Number(id), body);
@@ -53,6 +53,21 @@ export async function updateUser( req: Request, res: Response ) {
         if (err.name === 'DuplicatedEmailError') {
             return res.status(httpStatus.CONFLICT).send((err.message ) || 'This email already exists');
         }
+        if (err.name === 'UserDoesNotExist') {
+            return res.status(httpStatus.NOT_FOUND).send(err.message || 'This user does not exist');
+        }
+        return res.status(httpStatus.BAD_REQUEST).send(error);
+    }
+}
+
+export async function deleteUser( req: Request, res: Response ) {
+    const id = req.params.id;
+
+    try {
+        await userService.deleteUser(Number(id));
+        return res.status(httpStatus.OK).send('User deleted')
+    } catch(error) {
+        const err = error as Error;
         if (err.name === 'UserDoesNotExist') {
             return res.status(httpStatus.NOT_FOUND).send(err.message || 'This user does not exist');
         }

@@ -29,8 +29,9 @@ async function getUserById(id: number) {
 async function upateUser(id: number, body: UserType) {
   await getUserById(id);
   await validateUniqueEmail(body.email);
+  const update = await userRepository.updateUser(id, body);
 
-  return userRepository.updateUser(id, body);
+  return getUserById(id);
 }
 
 async function deleteUser(id: number) {
