@@ -78,9 +78,21 @@ http://localhost:5000/users/1
 }
 ```
 11. To delete a user, send a DELETE request to /users/:id with a valid ID:
+
 ```
 http://localhost:5000/users/2
 ```
+
+### route summary
+```
+POST: http://localhost:5000/users
+GET: http://localhost:5000/users
+GET: http://localhost:5000/users/:id
+PUT: http://localhost:5000/users/:id
+DELETE: http://localhost:5000/users/:id
+```
+
+
 # Automated Tests
 
 This application includes both manual and automated tests. For automated testing (unit and integration tests), Jest, Supertest, and Faker were used.
