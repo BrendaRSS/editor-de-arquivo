@@ -2,7 +2,6 @@ import app, { init } from '../../src/app'
 import supertest from 'supertest';
 import { cleanDb, closeConnection } from '../helpers';
 import { faker } from "@faker-js/faker";
-import User from '../../src/models/User';
 import httpStatus from "http-status";
 
 beforeAll(async () => {
@@ -212,7 +211,7 @@ describe("DELETE users", () => {
 
     it("should return status 200 if id is valid", async () => {
         const responsePost = await server.post("/users").send(validUser);
-        
+
         const response = await server.delete(`/users/${responsePost.body.id}`);
 
         expect(response.status).toBe(httpStatus.OK);

@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
     "test": "dotenv -e .env.test jest --runInBand"
   },
