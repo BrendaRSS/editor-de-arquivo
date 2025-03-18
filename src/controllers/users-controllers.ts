@@ -40,3 +40,22 @@ export async function getUserById( req: Request, res: Response ) {
         return res.status(httpStatus.BAD_REQUEST).send(error);
     }
 }
+
+export async function updateUser( req: Request, res: Response ) {
+    const id = req.params.id;
+    const body = req.body;
+
+    try {
+        const updateUser = await userService.upateUser(Number(id), body);
+        return res.status(httpStatus.OK).json(updateUser)
+    } catch(error) {
+        const err = error as Error;
+        if (err.name === 'DuplicatedEmailError') {
+            return res.status(httpStatus.CONFLICT).send((err.message ) || 'This email already exists');
+        }
+        if (err.name === 'UserDoesNotExist') {
+            return res.status(httpStatus.NOT_FOUND).send(err.message || 'This user does not exist');
+        }
+        return res.status(httpStatus.BAD_REQUEST).send(error);
+    }
+}

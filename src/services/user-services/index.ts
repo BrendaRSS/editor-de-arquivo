@@ -24,13 +24,26 @@ async function getUserById(id: number) {
       throw userDoesNotExist();
     }
     return user;
-    
+}
+
+async function upateUser(id: number, body: UserType) {
+  await getUserById(id);
+  await validateUniqueEmail(body.email);
+
+  return userRepository.updateUser(id, body);
+}
+
+async function deleteUser(id: number) {
+  await getUserById(id);
+  return userRepository.deleteUser(id);
 }
 
 const userService = {
     createUser,
     getAllUsers,
     getUserById,
+    upateUser,
+    deleteUser
   };  
 
 export * from "./error";
