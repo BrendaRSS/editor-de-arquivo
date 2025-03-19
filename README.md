@@ -43,6 +43,9 @@ npm run dev
 http://localhost:5000/users
 ```
 
+![thunderclient](https://github.com/user-attachments/assets/56b94c02-e5e5-4895-ac04-70739637b4ab)
+
+
 7. To create a user, send a POST request to /users with a valid JSON body:
 ```
   "nome": A string with more than 3 characters,
