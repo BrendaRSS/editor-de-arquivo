@@ -22,7 +22,7 @@ export async function close(): Promise<void> {
     await sequelize.close();
 }
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT ?? 10000;
 if (process.env.NODE_ENV !== 'test') {
     init().then(() => {
         app.listen(port, () => console.log(`Server running in port ${port}`));
